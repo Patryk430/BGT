@@ -31,7 +31,7 @@ std::string Similar_String (std::string string)
 
     char new_c = distr(gen);
 
-    while (new_c == old_c)  {char new_c = distr(gen);}
+    while (new_c == old_c)  {new_c = distr(gen);}
 
     string.pop_back();
     string.push_back(new_c);
@@ -106,12 +106,41 @@ void Test_2_strings (int test_count,int string_length)
     std::cout << "Didžiausias Hash'ų panašumas: " << max_hash_similarity << "/64\n" << "Mažiausias Hash'ų panašumas: " << min_hash_similarity << "/64\n";   
 }
 
-main()
+void Test_2_simillar_strings (int test_count,int string_length)
+{
+    int max_hash_similarity = 0;
+    int min_hash_similarity = 64;
+
+    for (int i=0; i<test_count; i++)
+    {
+        std::string string_1 = Random_String(string_length);
+        std::string string_2 = Similar_String(string_1);
+
+        std::cout << string_1 << " " << string_2 << " Panašumas: " << String_Similarity(string_1, string_2) << "/" << string_length << std::endl;
+        
+        std::string hash_1 = Hash(string_1);
+        std::string hash_2 = Hash(string_2);
+
+        int similarity = String_Similarity(hash_1, hash_2);
+
+        std::cout << hash_1 << " " << hash_2 << " Panašumas: " << similarity << "/64\n";
+
+        if (max_hash_similarity < similarity) max_hash_similarity = similarity;
+        if (min_hash_similarity > similarity) min_hash_similarity = similarity;
+    }
+
+    std::cout << "Didžiausias Hash'ų panašumas: " << max_hash_similarity << "/64\n" << "Mažiausias Hash'ų panašumas: " << min_hash_similarity << "/64\n";   
+}
+
+int main()
 {  
-    Test_2_strings(40, 20);
+    Test_2_simillar_strings(1000, 20);
 
     return 0;
 }
+
+
+
 
 
 
