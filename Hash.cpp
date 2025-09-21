@@ -100,6 +100,23 @@ int String_Similarity (std::string str1, std::string str2)
     return count;
 }
 
+int Bit_Similarity(std::string hex1, std::string hex2) 
+{
+    int bit_similarity = 0;
+
+    for (int i = 0; i < 64; i++) 
+    {
+        unsigned int val1 = std::stoi(std::string(1, hex1[i]), nullptr, 16);
+        unsigned int val2 = std::stoi(std::string(1, hex2[i]), nullptr, 16);
+
+        unsigned int diff = val1 ^ val2;
+
+        bit_similarity += 4 - __builtin_popcount(diff);
+    }
+
+    return bit_similarity;
+}
+
 void Test_2_strings (int test_count,int string_length)
 {
     int max_hash_similarity = 0;
@@ -172,6 +189,10 @@ void Test_2_simillar_strings (int test_count,int string_length)
     int min_hash_similarity = 64;
     int sum_hash_similarity = 0;
 
+    int min_bit_similarity = 256;
+    int max_bit_similarity = 0;
+    int sum_bit_similarity = 0;
+
     std::ofstream O ("Simillar_String_Test_Results.txt");
 
     for (int i=0; i<test_count; i++)
@@ -179,22 +200,29 @@ void Test_2_simillar_strings (int test_count,int string_length)
         std::string string_1 = Random_String(string_length);
         std::string string_2 = Similar_String(string_1);
 
-        O << string_1 << " " << string_2 << " Panašumas: " << String_Similarity(string_1, string_2) << "/" << string_length << std::endl;
+        O << string_1 << " " << string_2 /*<< " Panašumas: " << String_Similarity(string_1, string_2) << "/" << string_length*/ << std::endl;
         
         std::string hash_1 = Hash(string_1);
         std::string hash_2 = Hash(string_2);
 
         int similarity = String_Similarity(hash_1, hash_2);
+        int bit_similarity = Bit_Similarity(hash_1, hash_2);
 
-        O << hash_1 << " " << hash_2 << " Panašumas: " << similarity << "/64\n";
+        O << hash_1 << " " << hash_2 << " Panašumas: " << similarity << "/64 Bitais: " << bit_similarity << "/256 \n";
 
         sum_hash_similarity += similarity;
+        sum_bit_similarity += bit_similarity;
 
         if (max_hash_similarity < similarity) max_hash_similarity = similarity;
         if (min_hash_similarity > similarity) min_hash_similarity = similarity;
+
+        if (max_bit_similarity < bit_similarity) max_bit_similarity = bit_similarity;
+        if (min_bit_similarity > bit_similarity) min_bit_similarity = bit_similarity;
     }
 
     O << "\nDidžiausias Hash'ų panašumas: " << max_hash_similarity << "/64\n" << "Mažiausias Hash'ų panašumas: " << min_hash_similarity << "/64\n" << "Vidutinis Hash'ų panašumas: " << (double)sum_hash_similarity/test_count;
+
+    O << "\nDidžiausias Bit'ų panašumas: " << max_bit_similarity << "/256\n" << "Mažiausias Bit'ų panašumas: " << min_bit_similarity << "/256\n" << "Vidutinis Hash'ų panašumas: " << (double)sum_bit_similarity/test_count;
 
     O.close();
 }
@@ -241,11 +269,11 @@ int main()
     switch (choice)
     {
     case 1:
-        Test_2_strings (10000, 1000);
+        Test_2_strings (10000, 500);
         break;
     
     case 2:
-        Test_2_simillar_strings (10000, 1000);
+        Test_2_simillar_strings (10000, 500);
         break;
 
     case 3:
