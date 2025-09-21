@@ -1,7 +1,7 @@
 # "Cezario Hash'as"
   Kuo skiriasi šifras ir hash'as? O gi tuo kad iš šifro galima gauti pradinį tekstą, o iš hash'o - negalima to padaryti.
   Logiškai pagalvojus - šifras taps hash'ų jeigu "rakto" gavimą ir tuo būdu ir atšifravimą padarysime neįmanomu*.  
-  Šis kodas bando tai padaryti panaudojus pati žinomiausiažą šifrą - Cezario.
+  Šis kodas bando tai padaryti panaudojus pati žinomiausią šifrą - Cezario.
 
 *Su meilės pagalba viskas įmanoma.
 
@@ -32,4 +32,8 @@
 
 
   ## Testavimo rezultatai
-  TBA
+
+  ### Deterministiškumas
+  * Sugeneravus 100 000 string'ų ir iš jų gavus po 2 hash'us, nebuvo nesutapusios hash'ų poros - taigi, hash'avimo algoritmas yra deterministinis.
+  <img width="300" height="55" alt="image" src="https://github.com/user-attachments/assets/fcb4a616-a2eb-4b5b-b830-900a0b6f7686" />
+
