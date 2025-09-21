@@ -34,6 +34,12 @@
   ## Testavimo rezultatai
 
   ### Deterministiškumas
-  * Sugeneravus 100 000 string'ų ir iš jų gavus po 2 hash'us, nebuvo nesutapusios hash'ų poros - taigi, hash'avimo algoritmas yra deterministinis.
-  <img width="300" height="55" alt="image" src="https://github.com/user-attachments/assets/fcb4a616-a2eb-4b5b-b830-900a0b6f7686" />
+  * Sugeneravus 100 000 string'ų ir iš jų gavus po 2 hash'us, nebuvo nesutapusios hash'ų poros - taigi, hash'avimo algoritmas yra deterministinis.    
+    <img width="300" height="55" alt="image" src="https://github.com/user-attachments/assets/fcb4a616-a2eb-4b5b-b830-900a0b6f7686" />
+
+  ### Lavinos efektas
+  * Sugeneravus 100 000 string'ų porų kurie skiriesi tik vienų simbolių gauti tokie rezultatai:   
+    <img width="300" height="1180" alt="image" src="https://github.com/user-attachments/assets/b05c9341-f00c-40d6-af08-6900c56b924e" />    
+    Tai parodo lavinos efekto buvimą ir atsparumą kolizijoms.
+
 
