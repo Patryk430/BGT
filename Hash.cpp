@@ -199,6 +199,30 @@ void Test_2_simillar_strings (int test_count,int string_length)
     O.close();
 }
 
+void Test_deter (int test_count)
+{
+    std::ofstream O ("Determenistic_Test_Log.txt");
+
+    int error_count = 0;
+
+    for (int i = 0; i < test_count; i++)
+    {
+        std::string string_1 = Random_String ();
+
+        std::string hash_1 = Hash (string_1);
+        std::string hash_2 = Hash (string_1);
+
+        O << string_1 << " : \nhash 1:" << hash_1 << " \nhash 2:" << hash_2 << "\n";
+
+        if (hash_1 != hash_2) { error_count++; std::cout << "Nesutampa at " << i << std::endl;}
+
+    }
+
+    O << "Nesutapimu skaičius: " << error_count;
+    O.close();
+
+}
+
 
 int main()
 {  
@@ -206,9 +230,9 @@ int main()
     
     std::cout << "SVEIKI\n" 
     << "--------------------------------------------------------------------------------------------------\n" 
-    << "1 - Patikrinti 1 000 000 to pačio ilgio skirtingų string'ų porų\n"
-    << "2 - Patikrinti 1 000 000 to pačio ilgio panašių (1 simbolio skirtumas) string'ų porų\n"
-    << "3 - Patikrinti 1 000 000 skirtingo ilgio string'ų porų\n"
+    << "1 - Patikrinti 10 000 to pačio ilgio skirtingų string'ų porų\n"
+    << "2 - Patikrinti 10 000 to pačio ilgio panašių (1 simbolio skirtumas) string'ų porų\n"
+    << "3 - Patikrinti 10 000 skirtingo ilgio string'ų porų\n"
     << "4 - Testas su failų 'input.txt'\n"
     << "5 - Patikrinti deterministiškumą\n";
 
@@ -217,15 +241,15 @@ int main()
     switch (choice)
     {
     case 1:
-        Test_2_strings (1000000, 1000);
+        Test_2_strings (10000, 1000);
         break;
     
     case 2:
-        Test_2_simillar_strings (1000000, 1000);
+        Test_2_simillar_strings (10000, 1000);
         break;
 
     case 3:
-        Test_2_different_strings (1000000);
+        Test_2_different_strings (10000);
         break;
 
     case 4:
@@ -233,7 +257,7 @@ int main()
         break;
 
     case 5:
-        //Test_deter()
+        Test_deter(10000);
         break;
 
     default:
