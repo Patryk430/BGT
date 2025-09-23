@@ -294,9 +294,24 @@ void Test_file ()
     I.close();
 }
 
+void Read_file ()
+{
+    std::string filename;
+    std::cout << "Failo pavadinimas: ";
+    std::cin >> filename;
+    std::ifstream I (filename);
+    std::string line;
+    while (getline (I, line))
+    {
+        std::cout << Hash(line) << " \n";
+    }
+    I.close();
+}
+
 int main()
 {  
     int choice = 0;
+    std::string input;
     
     std::cout << "SVEIKI\n" 
     << "--------------------------------------------------------------------------------------------------\n" 
@@ -305,7 +320,8 @@ int main()
     << "3 - Patikrinti 10 000 skirtingo ilgio string'ų porų\n"
     << "4 - Testas su failų 'konstitucija.txt'\n"
     << "5 - Patikrinti deterministiškumą\n"
-    << "6 - Salting testas\n";
+    << "6 - Salting testas\n\n"
+    << "7 - įvesti į console || 8 - nuskaityti failą\n";
 
     std::cin >> choice;
 
@@ -333,6 +349,16 @@ int main()
 
     case 6:
         Test_salt();
+        break;
+
+    case 7:
+        std::cout << "jus: ";
+        std::cin >> input;
+        std::cout << Hash(input);
+        break;
+
+    case 8:
+        Read_file();
         break;
 
     default:
