@@ -4,6 +4,7 @@
 #include <sstream>
 #include <random>
 #include <algorithm>
+#include <chrono>
 
 std::string Random_String (int length)
 {
@@ -259,6 +260,39 @@ void Test_deter (int test_count)
 
 }
 
+void Test_file ()
+{
+    std::string input = "";
+	std::string line  = "";
+
+	std::ifstream I ("konstitucija.txt");
+    
+    int count = 0;
+    while(getline(I, line))
+    {
+        input += line + "\n";
+        count++;
+
+        if ((count & (count - 1)) == 0)
+        {   std::chrono::duration<double> duration_sum;
+
+            for (int j = 0; j < 3; j++)
+            {
+                auto start = std::chrono::high_resolution_clock::now();
+
+                std::string hash = Hash (input);
+
+                auto end = std::chrono::high_resolution_clock::now();
+
+                std::chrono::duration<double> duration = end - start;
+  	            duration_sum += duration;
+            }
+            std::cout << count << " linijos vidutiniškai užhash'uotos per " << duration_sum.count()/3 << "\n";
+        }
+    }
+
+    I.close();
+}
 
 int main()
 {  
@@ -269,7 +303,7 @@ int main()
     << "1 - Patikrinti 10 000 to pačio ilgio skirtingų string'ų porų\n"
     << "2 - Patikrinti 10 000 to pačio ilgio panašių (1 simbolio skirtumas) string'ų porų\n"
     << "3 - Patikrinti 10 000 skirtingo ilgio string'ų porų\n"
-    << "4 - Testas su failų 'input.txt'\n"
+    << "4 - Testas su failų 'konstitucija.txt'\n"
     << "5 - Patikrinti deterministiškumą\n"
     << "6 - Salting testas\n";
 
@@ -290,7 +324,7 @@ int main()
         break;
 
     case 4:
-        //Test_file()
+        Test_file();
         break;
 
     case 5:
