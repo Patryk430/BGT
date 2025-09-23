@@ -42,4 +42,8 @@
     <img width="300" height="1180" alt="image" src="https://github.com/user-attachments/assets/b05c9341-f00c-40d6-af08-6900c56b924e" />    
     Tai parodo lavinos efekto buvimą ir atsparumą kolizijoms.
 
+  ### Salting'as
+  * Pridėjus prie įviesties "salt" išviestis pasikeičia.     
+    <img width="300" height="60" alt="image" src="https://github.com/user-attachments/assets/90731673-96e3-4ece-932b-a2755fb6ef47" />
+
 
