@@ -46,4 +46,12 @@
   * Pridėjus prie įviesties "salt" išviestis pasikeičia.     
     <img width="300" height="60" alt="image" src="https://github.com/user-attachments/assets/90731673-96e3-4ece-932b-a2755fb6ef47" />
 
+  ### Testas su "konstitucija.txt"
+  * Patikrinus failą, gauti tokie rezultatai:    
+    <img width="300" height="180" alt="image" src="https://github.com/user-attachments/assets/9d30fffd-a048-438c-bcf7-50bfb5fa5f20" />    
+    <img width="300" height="420" alt="image" src="https://github.com/user-attachments/assets/9bde9b5e-110f-4dab-8dd8-06c2380020d4" />      
+    Taigi, nors hash'as nelabai efektyvus jo O(n)=n.
+
+
+
 
