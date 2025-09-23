@@ -227,6 +227,14 @@ void Test_2_simillar_strings (int test_count,int string_length)
     O.close();
 }
 
+void Test_salt ()
+{
+    std::string input = "password123";
+    std::string salt  = Random_String (10);
+
+    std::cout << "Input: " << input << " Salt: " << salt << "\n Hash be salt: " << Hash (input) << "\n Hash su salt: " << Hash (input+salt);
+}
+
 void Test_deter (int test_count)
 {
     std::ofstream O ("Determenistic_Test_Log.txt");
@@ -262,7 +270,8 @@ int main()
     << "2 - Patikrinti 10 000 to pačio ilgio panašių (1 simbolio skirtumas) string'ų porų\n"
     << "3 - Patikrinti 10 000 skirtingo ilgio string'ų porų\n"
     << "4 - Testas su failų 'input.txt'\n"
-    << "5 - Patikrinti deterministiškumą\n";
+    << "5 - Patikrinti deterministiškumą\n"
+    << "6 - Salting testas\n";
 
     std::cin >> choice;
 
@@ -273,7 +282,7 @@ int main()
         break;
     
     case 2:
-        Test_2_simillar_strings (10000, 500);
+        Test_2_simillar_strings (100000, 500);
         break;
 
     case 3:
@@ -286,6 +295,10 @@ int main()
 
     case 5:
         Test_deter(10000);
+        break;
+
+    case 6:
+        Test_salt();
         break;
 
     default:
