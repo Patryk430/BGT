@@ -52,6 +52,9 @@
     <img width="300" height="420" alt="image" src="https://github.com/user-attachments/assets/9bde9b5e-110f-4dab-8dd8-06c2380020d4" />      
     Taigi, nors hash'as nelabai efektyvus jo O(n)=n.
 
+  ## Išvados
+  Galima suformuluoti tokias išvadas:
+  * Su pakankamai RNG generavimo viskas įmanoma, bet žiauriai neefektyvu.
+  * Kad pasiekti rezultatą efektyvumu panašų į MD-5 ar SHA-256 reikalingos didelės pastangos ir matematinių algoritmų*, bitų operacijų supratimas.
 
-
-
+  *Aš iš matematikos slenkstinį pažymį gavau jeigu ką.
